@@ -25,20 +25,21 @@
 <body class="bg-zinc-800 align-middle text-center items-center bevan-regular">
     <header class="bg-zinc-950 text-white py-4 text-center">
         <img src="/static/PhightingLogo.png" alt="Phighting Logo" class="w-240 h-80 mx-auto mb-4">
+
+        <h1 class="text-4xl font-bold text-yellow-400">Quel personnage <i class="text-gray-100">PHIGHTING!</i> est-tu ?</h1>
     </header>
     
 
-    <main class="mx-auto py-8 text-center items-center text-white">
-        <div class="bg-blue-400 p-6 mt-6">
-            <p class="text-2xl">Question {{ session['numero_question'] + 1 }} sur 6 :</p>
-            <p>{{enonce}}</p>
+    <main class="mx-auto py-8 text-center items-center">
+        <img src="/static/smolpeople_nobackground.png" alt="Phighting Characters" class="w-240 h-auto mb-6 mx-auto">
 
-            <ul class="mx-auto py-10 px-150 text-left">
-                <li><a href="/reponse/0">1. {{reponses[0]}}</a></li>
-                <li><a href="/reponse/1">2. {{reponses[1]}}</a></li>
-                <li><a href="/reponse/2">3. {{reponses[2]}}</a></li>
-                <li><a href="/reponse/3">4. {{reponses[3]}}</a></li>
-            </ul>
+        <p class="text-white mb-4">Voici votre Phighter :</p>
+        <img src="/static/{{nom_gagnant}}.png" class="mb-6 mx-auto w-100 h-auto">
+        <p class="text-white mb-4 bevan-regular text-3xl">{{nom_gagnant}}</p>
+        <p class="text-white mb-4 bevan-regular text-l">{{resultats_description}}</p>
+
+        <div class="bg-blue-300 p-6 mt-6">
+            <a href="/" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Recommencer</a>
         </div>
     </main>
 

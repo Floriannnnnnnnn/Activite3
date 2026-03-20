@@ -1,6 +1,7 @@
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, redirect
 from questions import questions
+from resultats import resultats, noms
 import os
 
 app = Flask(__name__)
@@ -40,7 +41,23 @@ def question():
 
         return render_template('question.html', enonce = enonce_question, reponses = reponses, symboles = symboles)
     else:
-        return render_template('resultat.html')
+        scores_sorted = sorted(session["score"], key = session["score"].get, reverse=True)
 
+        gagnant = scores_sorted[0]
+
+        nom_gagnant = noms[gagnant]
+
+        resultats_description = resultats[gagnant]
+
+        return render_template('resultats.html', nom_gagnant = nom_gagnant, resultats_description = resultats_description)
+
+@app.route('/reponse/<numero>')
+def reponse(numero):
+    symbole = session["symboles"][int(numero)]
+    session["score"][symbole] += 1
+
+    session["numero_question"] += 1
+
+    return redirect("/question")
 
 app.run(host='192.168.3.16', port=81)
